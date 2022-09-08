@@ -23,6 +23,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             CompanySeed::class,
+            PerspectiveSeed::class,
         ]);
+        
     }
 }
