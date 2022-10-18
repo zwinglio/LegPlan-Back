@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Action;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Objective extends Model
 {
@@ -22,5 +23,10 @@ class Objective extends Model
     public function perspective()
     {
         return $this->belongsTo(Perspective::class);
+    }
+
+    public function actions()
+    {
+        return $this->hasMany(Action::class);
     }
 }
