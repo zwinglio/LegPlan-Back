@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ActionController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ObjectiveController;
+use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\PerspectiveController;
 
 /*
@@ -23,11 +24,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/', function () {
-    return response()->json(['version' => app()->version()]);
+    return response()->json([
+        'version' => app()->version(),
+    ]);
 });
 
 Route::get('/company', [CompanyController::class, 'index']);
 Route::put('/company', [CompanyController::class, 'update']);
+
+Route::apiResource('/departments', DepartmentController::class);
 
 Route::apiResource('/perspectives', PerspectiveController::class);
 Route::apiResource('/perspectives/{perspective}/objectives', ObjectiveController::class);

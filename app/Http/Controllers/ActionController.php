@@ -75,7 +75,7 @@ class ActionController extends Controller
             'action' => $action,
         ], 200);
     }
-
+4
     /**
      * Remove the specified resource from storage.
      *
