@@ -17,11 +17,11 @@ class DepartmentFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name,
-            'responsible_employee' => $this->faker->name,
-            'employee_role' => $this->faker->name,
-            'email' => $this->faker->email,
-            'phone' => $this->faker->phoneNumber,
+            'name' => fake()->name,
+            'responsible_employee' => fake()->name,
+            'employee_role' => fake()->name,
+            'email' => fake()->email,
+            'phone' => fake()->phoneNumber,
         ];
     }
 }
