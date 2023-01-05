@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TaskController;
 use App\Http\Controllers\ActionController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ObjectiveController;
@@ -37,3 +38,4 @@ Route::apiResource('/departments', DepartmentController::class);
 Route::apiResource('/perspectives', PerspectiveController::class);
 Route::apiResource('/perspectives/{perspective}/objectives', ObjectiveController::class);
 Route::apiResource('/perspectives/{perspective}/objectives/{objective}/actions', ActionController::class);
+Route::apiResource('/perspectives/{perspective}/objectives/{objective}/actions/{action}/tasks', TaskController::class);

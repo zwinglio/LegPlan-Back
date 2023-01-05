@@ -7,6 +7,7 @@ use App\Models\Objective;
 use App\Models\Perspective;
 use App\Http\Requests\StoreActionRequest;
 use App\Http\Requests\UpdateActionRequest;
+use Illuminate\Http\Request;
 
 class ActionController extends Controller
 {
@@ -15,17 +16,15 @@ class ActionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Perspective $perspective, Objective $objective)
+    public function index(Request $request)
     {
-        $actions = $objective->actions;
-
         return response()->json([
-            'actions' => $objective->actions,
-            'objective' => $objective->withoutRelations(),
-            'perspective' => $perspective,
+            'actions' => $request->objective->actions,
+            'objective' => $request->objective->withoutRelations(),
+            'perspective' => $request->objective->perspective,
         ]);
     }
-    
+
 
     /**
      * Store a newly created resource in storage.
@@ -75,7 +74,6 @@ class ActionController extends Controller
             'action' => $action,
         ], 200);
     }
-4
     /**
      * Remove the specified resource from storage.
      *
