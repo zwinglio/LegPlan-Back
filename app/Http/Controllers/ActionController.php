@@ -19,9 +19,9 @@ class ActionController extends Controller
     public function index(Request $request)
     {
         return response()->json([
-            'actions' => $request->objective->actions,
-            'objective' => $request->objective->withoutRelations(),
-            'perspective' => $request->objective->perspective,
+            'actions' => $request->initiative->actions,
+            'initiative' => $request->initiative->withoutRelations(),
+            'objective' => $request->objective,
         ]);
     }
 
@@ -32,9 +32,9 @@ class ActionController extends Controller
      * @param  \App\Http\Requests\StoreActionRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreActionRequest $request, Perspective $perspective, Objective $objective)
+    public function store(StoreActionRequest $request)
     {
-        $action = $objective->actions()->create($request->validated());
+        $action = $request->initiative->actions()->create($request->validated());
 
         return response()->json([
             'message' => 'Action created successfully',
@@ -48,13 +48,13 @@ class ActionController extends Controller
      * @param  \App\Models\Action  $action
      * @return \Illuminate\Http\Response
      */
-    public function show(Perspective $perspective, Objective $objective, Action $action)
+    public function show(Request $request)
     {
         return response()->json([
             'message' => 'Action retrieved successfully',
-            'action' => $action,
-            'objective' => $objective,
-            'perspective' => $perspective,
+            'action' => $request->action,
+            'initiative' => $request->initiative,
+            'objective' => $request->objective,
         ], 200);
     }
 
@@ -65,8 +65,9 @@ class ActionController extends Controller
      * @param  \App\Models\Action  $action
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateActionRequest $request, Perspective $perspective, Objective $objective, Action $action)
+    public function update(UpdateActionRequest $request)
     {
+        $action = $request->action;
         $action->update($request->validated());
 
         return response()->json([
@@ -80,9 +81,9 @@ class ActionController extends Controller
      * @param  \App\Models\Action  $action
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Perspective $perspective, Objective $objective, Action $action)
+    public function destroy(Request $request)
     {
-        $action->delete();
+        $request->action->delete();
 
         return response()->json([
             'message' => 'Action deleted successfully',
