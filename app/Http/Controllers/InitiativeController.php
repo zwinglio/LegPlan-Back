@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Initiative;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreInitiativeRequest;
+use App\Http\Requests\UpdateInitiativeRequest;
 
 class InitiativeController extends Controller
 {
@@ -12,9 +14,13 @@ class InitiativeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $initiatives = $request->objective->initiatives;
+
+        return response()->json([
+            'initiatives' => $initiatives,
+        ]);
     }
 
     /**
@@ -23,9 +29,14 @@ class InitiativeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreInitiativeRequest $request)
     {
-        //
+        $initiative = $request->objective->initiatives()->create($request->validated());
+
+        return response()->json([
+            'message' => 'Initiative created successfully',
+            'initiative' => $initiative,
+        ]);
     }
 
     /**
@@ -34,9 +45,11 @@ class InitiativeController extends Controller
      * @param  \App\Models\Initiative  $initiative
      * @return \Illuminate\Http\Response
      */
-    public function show(Initiative $initiative)
+    public function show(Request $request)
     {
-        //
+        return response()->json([
+            'initiative' => $request->initiative,
+        ]);
     }
 
     /**
@@ -46,9 +59,14 @@ class InitiativeController extends Controller
      * @param  \App\Models\Initiative  $initiative
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Initiative $initiative)
+    public function update(UpdateInitiativeRequest $request)
     {
-        //
+        $request->initiative->update($request->validated());
+
+        return response()->json([
+            'message' => 'Initiative updated successfully',
+            'initiative' => $request->initiative,
+        ]);
     }
 
     /**
@@ -57,8 +75,12 @@ class InitiativeController extends Controller
      * @param  \App\Models\Initiative  $initiative
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Initiative $initiative)
+    public function destroy(Request $request)
     {
-        //
+        $request->initiative->delete();
+
+        return response()->json([
+            'message' => 'Initiative deleted successfully',
+        ]);
     }
 }
