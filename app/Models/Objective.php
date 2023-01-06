@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Action;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -25,8 +24,8 @@ class Objective extends Model
         return $this->belongsTo(Perspective::class);
     }
 
-    public function actions()
+    public function initiatives()
     {
-        return $this->hasMany(Action::class);
+        return $this->hasMany(Initiative::class);
     }
 }

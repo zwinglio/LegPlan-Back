@@ -61,6 +61,13 @@ class RouteServiceProvider extends ServiceProvider
             ->where('initiative_id', $initiative->id)
             ->firstOrFail();
         });
+
+        Route::bind('task', function ($value, $route) {
+            $action = $route->parameter('action');
+            return \App\Models\Task::where('id', $value)
+            ->where('action_id', $action->id)
+            ->firstOrFail();
+        });
     }
 
     /**

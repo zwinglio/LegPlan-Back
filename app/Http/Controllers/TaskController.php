@@ -18,9 +18,8 @@ class TaskController extends Controller
     {
         return response()->json([
             'tasks' => $request->action->tasks,
+            'initiative' => $request->initiative,
             'action' => $request->action->withoutRelations(),
-            'objective' => $request->objective,
-            'perspective' => $request->perspective,
         ]);
     }
 
@@ -48,13 +47,13 @@ class TaskController extends Controller
      */
     public function show(Request $request)
     {
-        $task = Task::findOrFail($request->task);
+        $task = $request->task;
 
         return response()->json([
-            'task' => $task->withoutRelations(),
-            'action' => $task->action,
-            'objective' => $task->action->objective,
-            'perspective' => $task->action->objective->perspective,
+            'task' => $task,
+            'action' => $request->action,
+            'initiative' => $request->initiative,
+            'objective' => $request->objective,
         ], 200);
     }
 
@@ -67,8 +66,7 @@ class TaskController extends Controller
      */
     public function update(UpdateTaskRequest $request)
     {
-        $task = Task::findOrFail($request->task);
-
+        $task = $request->task;
         $task->update($request->validated());
 
         return response()->json([
@@ -85,12 +83,11 @@ class TaskController extends Controller
      */
     public function destroy(Request $request)
     {
-        $task = Task::findOrFail($request->task);
-
+        $task = $request->task;
         $task->delete();
 
         return response()->json([
             'message' => 'Task deleted successfully',
-        ], 200);
+        ]);
     }
 }
