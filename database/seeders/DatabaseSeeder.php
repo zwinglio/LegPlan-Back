@@ -22,12 +22,12 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
-            CompanySeed::class,
-            DepartmentSeed::class,
-            PerspectiveSeed::class,
-            ObjectiveSeed::class,
+            CompanySeeder::class,
+            DepartmentSeeder::class,
+            PerspectiveSeeder::class,
+            ObjectiveSeeder::class,
             InitiativeSeeder::class,
-            ActionSeed::class,
+            ActionSeeder::class,
         ]);
     }
 }

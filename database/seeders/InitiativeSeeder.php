@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Initiative;
 use Illuminate\Database\Seeder;
 
 class InitiativeSeeder extends Seeder
@@ -17,7 +17,7 @@ class InitiativeSeeder extends Seeder
         $objectives = \App\Models\Objective::all();
 
         foreach ($objectives as $objective) {
-            \App\Models\Initiative::factory()->count(3)->create([
+            Initiative::factory()->count(3)->create([
                 'objective_id' => $objective->id,
             ]);
         }
