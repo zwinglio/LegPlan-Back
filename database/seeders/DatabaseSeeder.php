@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             DepartmentSeed::class,
             PerspectiveSeed::class,
             ObjectiveSeed::class,
+            InitiativeSeeder::class,
             ActionSeed::class,
         ]);
     }

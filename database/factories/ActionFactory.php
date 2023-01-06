@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Objective;
+use App\Models\Initiative;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,7 +21,7 @@ class ActionFactory extends Factory
             'name' => $this->faker->sentence(3, true),
             'start_date' => '2022-01-01', // $this->faker->date()
             'end_date' => '2022-12-31', // $this->faker->date()
-            'objective_id' => Objective::all()->random()->id,
+            'initiative_id' => Initiative::all()->random()->id,
         ];
     }
 }

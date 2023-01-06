@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class () extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      *
@@ -12,12 +13,10 @@ return new class () extends Migration {
      */
     public function up()
     {
-        Schema::create('actions', function (Blueprint $table) {
+        Schema::create('initiatives', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->date('start_date');
-            $table->date('end_date');
-            $table->foreignId('initiative_id')->constrained()->onDelete('cascade');
+            $table->foreignId('objective_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class () extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('actions');
+        Schema::dropIfExists('initiatives');
     }
 };

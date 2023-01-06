@@ -48,10 +48,17 @@ class RouteServiceProvider extends ServiceProvider
             ->firstOrFail();
         });
 
-        Route::bind('action', function ($value, $route) {
+        Route::bind('initiative', function ($value, $route) {
             $objective = $route->parameter('objective');
-            return \App\Models\Action::where('id', $value)
+            return \App\Models\Initiative::where('id', $value)
             ->where('objective_id', $objective->id)
+            ->firstOrFail();
+        });
+
+        Route::bind('action', function ($value, $route) {
+            $initiative = $route->parameter('initiative');
+            return \App\Models\Action::where('id', $value)
+            ->where('initiative_id', $initiative->id)
             ->firstOrFail();
         });
     }
