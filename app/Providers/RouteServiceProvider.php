@@ -36,6 +36,31 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
         });
+
+        Route::bind('perspective', function ($value) {
+            return \App\Models\Perspective::where('id', $value)->firstOrFail();
+        });
+
+        Route::bind('objective', function ($value, $route) {
+            $perspective = $route->parameter('perspective');
+            return \App\Models\Objective::where('id', $value)
+            ->where('perspective_id', $perspective->id)
+            ->firstOrFail();
+        });
+
+        Route::bind('initiative', function ($value, $route) {
+            $objective = $route->parameter('objective');
+            return \App\Models\Initiative::where('id', $value)
+            ->where('objective_id', $objective->id)
+            ->firstOrFail();
+        });
+
+        Route::bind('action', function ($value, $route) {
+            $initiative = $route->parameter('initiative');
+            return \App\Models\Action::where('id', $value)
+            ->where('initiative_id', $initiative->id)
+            ->firstOrFail();
+        });
     }
 
     /**

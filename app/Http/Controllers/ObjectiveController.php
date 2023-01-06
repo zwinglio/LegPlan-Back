@@ -15,9 +15,9 @@ class ObjectiveController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Perspective $perspective)
+    public function index(Request $request)
     {
-        $objectives = $perspective->objectives;
+        $objectives = $request->perspective->objectives;
 
         return response()->json([
             'objectives' => $objectives,
@@ -46,9 +46,9 @@ class ObjectiveController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Perspective $perspective, $objective)
+    public function show(Perspective $perspective, Objective $objective)
     {
-        $objective = $perspective->objectives()->findOrFail($objective);
+        $objective = $perspective->objectives()->findOrFail($objective->id);
 
         return response()->json([
             'objective' => $objective,
