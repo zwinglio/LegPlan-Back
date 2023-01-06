@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             ObjectiveSeeder::class,
             InitiativeSeeder::class,
             ActionSeeder::class,
+            TaskSeeder::class,
         ]);
     }
 }
