@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use PhpParser\Node\Expr\Cast\Object_;
 
 class Action extends Model
 {
@@ -22,9 +21,9 @@ class Action extends Model
         'updated_at',
     ];
 
-    public function objective()
+    public function initiative()
     {
-        return $this->belongsTo(Objective::class);
+        return $this->belongsTo(Initiative::class);
     }
 
     public function tasks()

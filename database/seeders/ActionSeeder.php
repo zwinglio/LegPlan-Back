@@ -3,11 +3,12 @@
 namespace Database\Seeders;
 
 use App\Models\Action;
+use App\Models\Initiative;
 use App\Models\Objective;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-class ActionSeed extends Seeder
+class ActionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,6 +17,12 @@ class ActionSeed extends Seeder
      */
     public function run()
     {
-        Action::factory(30)->create();
+        $initiative = Initiative::all();
+
+        foreach ($initiative as $initiative) {
+            Action::factory()->count(3)->create([
+                'initiative_id' => $initiative->id,
+            ]);
+        }
     }
 }

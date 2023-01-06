@@ -3,10 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\Perspective;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class PerspectiveSeed extends Seeder
+class PerspectiveSeeder extends Seeder
 {
     /**
      * Run the database seeds.
