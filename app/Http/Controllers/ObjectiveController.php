@@ -35,7 +35,7 @@ class ObjectiveController extends Controller
         $objective = $perspective->objectives()->create($request->validated());
 
         return response()->json([
-            'message' => 'Objective created successfully',
+            'message' => 'Objective created successfully 😉',
             'objective' => $objective,
         ]);
     }
