@@ -12,9 +12,12 @@ class CompanyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): \Illuminate\Http\JsonResponse
     {
-        return Company::all();
+        $company = Company::all()->first();
+        return response()->json([
+            'company' => $company,
+        ]);
     }
 
     /**
