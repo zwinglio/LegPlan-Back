@@ -16,8 +16,11 @@ class PerspectiveController extends Controller
      */
     public function index()
     {
-        $perspectives = Perspective::all();
-        return response()->json(['perspectives' => $perspectives]);
+        $perspectives = Perspective::all()->load('objectives', 'objectives.initiatives', 'objectives.initiatives.actions');
+
+        return response()->json([
+            'perspectives' => $perspectives
+        ]);
     }
 
     /**
@@ -58,7 +61,6 @@ class PerspectiveController extends Controller
             'message' => 'Perspective updated successfully',
             'perspective' => $perspective
         ]);
-
     }
 
     /**
