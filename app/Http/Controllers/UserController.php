@@ -28,7 +28,10 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $users = User::all();
+        return response()->json([
+            'users' => $users
+        ], 200);
     }
 
     /**

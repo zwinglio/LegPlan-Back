@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use App\Models\Department;
 use Illuminate\Database\Seeder;
 
@@ -17,8 +18,7 @@ class DepartmentSeeder extends Seeder
         Department::create(
             [
                 'name' => 'Tecnologia da Informação',
-                'responsible_employee' => fake()->name(),
-                'employee_role' => 'Analista de Sistemas',
+                'responsible_id' => User::factory()->create()->id,
                 'email' => fake()->safeEmail(),
                 'phone' => fake()->phoneNumber(),
             ],
@@ -27,8 +27,7 @@ class DepartmentSeeder extends Seeder
         Department::create(
             [
                 'name' => 'Recursos Humanos',
-                'responsible_employee' => fake()->name(),
-                'employee_role' => 'Analista de Recursos Humanos',
+                'responsible_id' => User::factory()->create()->id,
                 'email' => fake()->safeEmail(),
                 'phone' => fake()->phoneNumber(),
             ],
@@ -37,8 +36,7 @@ class DepartmentSeeder extends Seeder
         Department::create(
             [
                 'name' => 'Financeiro',
-                'responsible_employee' => fake()->name(),
-                'employee_role' => 'Analista de Financeiro',
+                'responsible_id' => User::factory()->create()->id,
                 'email' => fake()->safeEmail(),
                 'phone' => fake()->phoneNumber(),
             ],

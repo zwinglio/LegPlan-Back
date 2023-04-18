@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,8 +19,7 @@ class DepartmentFactory extends Factory
     {
         return [
             'name' => fake()->name,
-            'responsible_employee' => fake()->name,
-            'employee_role' => fake()->name,
+            'responsible_id' => User::factory()->create()->id,
             'email' => fake()->email,
             'phone' => fake()->phoneNumber,
         ];

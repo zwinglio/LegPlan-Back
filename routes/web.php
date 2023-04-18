@@ -16,3 +16,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return response()->json(['version' => app()->version()]);
 });
+
+Route::redirect('/api/sanctum/csrf-cookie', '/sanctum/csrf-cookie', 301);

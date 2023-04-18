@@ -7,10 +7,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens;
+    use HasFactory;
+    use Notifiable;
+
+    protected $roleTypes = [
+        'admin' => 'Administrador do Sistema',
+        'head' => 'Responsável do Setor',
+    ];
 
     /**
      * The attributes that are mass assignable.
@@ -20,6 +28,8 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'position',
+        'role',
         'password',
     ];
 
@@ -31,6 +41,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'created_at',
+        'updated_at',
+        'email_verified_at',
     ];
 
     /**
@@ -40,5 +53,30 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'department' => 'array',
     ];
+
+    protected $with = [
+        'department'
+    ];
+
+    public function department()
+    {
+        return $this->hasOne(Department::class, 'responsible_id', 'id');
+    }
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
+
+    public function getRoleTypes()
+    {
+        return $this->roleTypes;
+    }
 }
