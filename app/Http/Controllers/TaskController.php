@@ -90,4 +90,13 @@ class TaskController extends Controller
             'message' => 'Task deleted successfully',
         ]);
     }
+
+    public function allTasks(Request $request)
+    {
+        $tasks = Task::all();
+
+        return response()->json([
+            'tasks' => $tasks,
+        ]);
+    }
 }

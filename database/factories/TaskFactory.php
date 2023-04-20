@@ -21,7 +21,7 @@ class TaskFactory extends Factory
         return [
             'name' => $this->faker->sentence(3, true),
             'description' => $this->faker->sentence(6, true),
-            'status' => $this->faker->randomElement(['Planejamento', 'Em progresso', 'Concluída']),
+            'status' => $this->faker->randomElement(['not_started', 'in_progress', 'review', 'completed']),
             'priority' => $this->faker->randomElement(['Baixa', 'Média', 'Alta']),
             'start_date' => $this->faker->date(),
             'end_date' => $this->faker->date(),

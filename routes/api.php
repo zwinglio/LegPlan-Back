@@ -46,6 +46,7 @@ Route::apiResource('/perspectives/{perspective}/objectives', ObjectiveController
 Route::apiResource('/perspectives/{perspective}/objectives/{objective}/initiatives', InitiativeController::class);
 Route::apiResource('/perspectives/{perspective}/objectives/{objective}/initiatives/{initiative}/actions', ActionController::class);
 Route::apiResource('/perspectives/{perspective}/objectives/{objective}/initiatives/{initiative}/actions/{action}/tasks', TaskController::class);
+Route::get('/tasks', [TaskController::class, 'allTasks']);
 
 
 Route::post('/login', [AuthController::class, 'login'])->name('login');

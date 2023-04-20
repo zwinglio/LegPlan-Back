@@ -10,6 +10,13 @@ class Task extends Model
 {
     use HasFactory;
 
+    protected $statusTypes = [
+        'not_started' => 'Não começou',
+        'in_progress' => 'Em progresso',
+        'review' => 'Revisão',
+        'completed' => 'Concluído',
+    ];
+
     protected $fillable = [
         'name',
         'description',
@@ -45,7 +52,12 @@ class Task extends Model
 
     public function getResponsibleEmployeeAttribute()
     {
-        return $this->department->responsible_employee;
+        return $this->department->responsible;
+    }
+
+    public function getStatusAttribute($value)
+    {
+        return $this->statusTypes[$value];
     }
 
     public function action()
