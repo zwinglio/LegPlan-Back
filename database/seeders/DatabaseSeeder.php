@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             'role' => 'admin',
         ]);
 
+
         $this->call([
             CompanySeeder::class,
             DepartmentSeeder::class,
