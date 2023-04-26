@@ -18,13 +18,16 @@ class TaskFactory extends Factory
      */
     public function definition()
     {
+        $start_date = $this->faker->dateTimeBetween('-3 months', '+3 months');
+        $end_date = $this->faker->dateTimeBetween($start_date, '+3 months');
+
         return [
             'name' => $this->faker->sentence(3, true),
             'description' => $this->faker->sentence(6, true),
-            'status' => $this->faker->randomElement(['not_started', 'in_progress', 'review', 'completed']),
+            'status' => $this->faker->randomElement(['not_started', 'pending', 'in_progress', 'review', 'completed']),
             'priority' => $this->faker->randomElement(['Baixa', 'Média', 'Alta']),
-            'start_date' => $this->faker->date(),
-            'end_date' => $this->faker->date(),
+            'start_date' => $start_date,
+            'end_date' => $end_date,
             'action_id' => Action::all()->random()->id,
             'department_id' => Department::all()->random()->id,
         ];

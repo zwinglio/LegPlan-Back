@@ -18,8 +18,8 @@ return new class () extends Migration {
             $table->string('description');
             $table->string('status');
             $table->string('priority');
-            $table->string('start_date');
-            $table->string('end_date');
+            $table->date('start_date');
+            $table->date('end_date');
             $table->foreignId('action_id')->constrained('actions')->onDelete('cascade');
             $table->foreignId('department_id')->constrained('departments')->nullable();
             $table->timestamps();

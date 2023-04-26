@@ -12,6 +12,7 @@ class Task extends Model
 
     protected $statusTypes = [
         'not_started' => 'Não começou',
+        'pending' => 'Pendente',
         'in_progress' => 'Em progresso',
         'review' => 'Revisão',
         'completed' => 'Concluído',
@@ -58,6 +59,16 @@ class Task extends Model
     public function getStatusAttribute($value)
     {
         return $this->statusTypes[$value];
+    }
+
+    public function getStartDateAttribute($value)
+    {
+        return date('d/m/Y', strtotime($value));
+    }
+
+    public function getEndDateAttribute($value)
+    {
+        return date('d/m/Y', strtotime($value));
     }
 
     public function action()
