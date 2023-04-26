@@ -16,7 +16,7 @@ class PerspectiveController extends Controller
      */
     public function index()
     {
-        $perspectives = Perspective::all()->load('objectives', 'objectives.initiatives', 'objectives.initiatives.actions');
+        $perspectives = Perspective::all()->load('objectives', 'objectives.initiatives', 'objectives.initiatives.actions.tasks');
 
         return response()->json([
             'perspectives' => $perspectives
